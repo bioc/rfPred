@@ -1,0 +1,23 @@
+citHeader("To cite the rfPred package in publications use:")
+
+citEntry(entry="Manual",
+    title = "Assign rfPred functional prediction scores to a missense variants list",
+    author = personList(as.person("F. Jabot-Hanin"), as.person("H. Varet"), as.person("J.-P. Jais")),
+    year = 2013,
+    note = paste("R package version", packageDescription("rfPred")$version),
+    textVersion =
+      paste("Jabot-Hanin F., Varet H. and Jais J.-P. (",
+        substring(packageDescription("rfPred")$Date,1,4),
+        ") rfPred ",
+        "R package, version ", packageDescription("rfPred")$Version,
+        ".", sep = "")
+)
+
+
+citEntry(entry="Article",
+    title = "rfPred: a new meta-score for functional prediction of missense variants in human exome",
+    author = personList(as.person("F. Jabot-Hanin"), as.person("H. Varet"), as.person("F. Tores"), as.person("J.-P. Jais")),
+    journal = "Submitted",
+	year = 2013,
+    textVersion = "Jabot-Hanin F, Varet H, Tores F and Jais J.-P. 2013. rfPred: a new meta-score for functional prediction of missense variants in human exome (submitted)"
+)

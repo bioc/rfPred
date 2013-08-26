@@ -1,0 +1,4 @@
+exportMethods(rfPred_scores)
+exportPattern("^[a-zA-Z]")
+import(GenomicRanges)
+useDynLib(rfPred)

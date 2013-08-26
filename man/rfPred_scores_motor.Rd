@@ -1,0 +1,42 @@
+\name{rfPred_scores_motor}
+\alias{rfPred_scores_motor}
+\title{Motor of \code{rfPred_scores}}
+\usage{
+  rfPred_scores_motor(variant_list, data, index, all.col,
+    file.export, n.cores)
+}
+\arguments{
+  \item{variant_list}{Variants list in a \code{data.frame}
+  containing 4 or 5 columns: chromosome number, hg19
+  genomic position on the chromosome, reference nucleotid,
+  variant nucleotid and uniprot protein identifier
+  (optional)}
+
+  \item{data}{Path to the compressed TabixFile, either on
+  the server (default) or on the user's computer}
+
+  \item{index}{Path to the index of the TabixFile, either
+  on the server (default) or on the user's computer}
+
+  \item{all.col}{\code{TRUE} to return all available
+  information, \code{FALSE} to return a more compact result
+  (the most informative columns, see Value)}
+
+  \item{file.export}{Optional, name of the CSV file in
+  which export the results (default is \code{NULL})}
+
+  \item{n.cores}{number of cores to use when scaning the
+  TabixFile, can be efficient for large request (default is
+  1)}
+}
+\value{
+  see the \code{\link{rfPred_scores}} function
+}
+\description{
+  Motor of \code{rfPred_scores}
+}
+\note{
+  This function is called by the \code{rfPred_scores} S4
+  method
+}
+

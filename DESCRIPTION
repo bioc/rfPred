@@ -1,0 +1,16 @@
+Package: rfPred
+Type: Package
+Title: Assign rfPred functional prediction scores to a missense
+        variants list
+Version: 0.99.1
+Date: 2013-07-17
+Author: Fabienne Jabot-Hanin, Hugo Varet and Jean-Philippe Jais
+Depends: Rsamtools, GenomicRanges, IRanges, data.table, methods,
+        parallel
+Suggests: BiocStyle
+Maintainer: Hugo Varet <varethugo@gmail.com>
+Description: Based on external numerous data files where rfPred scores are pre-calculated on all genomic positions of the human exome, the package gives rfPred scores to missense variants identified by the chromosome, the position (hg19 version), the referent and alternative nucleotids and the uniprot identifier of the protein. Note that for using the package, the user has to be connected on the Internet or to download the TabixFile and index (approximately 3.3 Go).
+License: GPL (>=2 )
+biocViews: Bioinformatics, Software, Homo-sapiens, Annotation,
+        Classification
+URL: http://www.sbim.fr/rfPred
