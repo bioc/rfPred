@@ -54,40 +54,46 @@
 #' # from a data.frame without uniprot protein identifier
 #' data(variant_list_Y)
 #' res=rfPred_scores(variant_list = variant_list_Y[,1:4],
-#'         data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
-#'         index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
+#'                   data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
+#'                   index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
 #' # from a data.frame with uniprot protein identifier
 #' res2=rfPred_scores(variant_list = variant_list_Y,
-#'         data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
-#'         index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
+#'                    data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
+#'                    index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
 #' # from a VCF file
 #' res3=rfPred_scores(variant_list = system.file("extdata", "example.vcf", package="rfPred",mustWork=TRUE),
-#'         data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
-#'         index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
+#'                    data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
+#'                    index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
 #' # from a GRanges object
 #' data(example_GRanges)
 #' res4=rfPred_scores(variant_list = example_GRanges,
-#'         data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
-#'         index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
+#'                    data = system.file("extdata", "chrY_rfPred.txtz", package="rfPred",mustWork=TRUE),
+#'                    index = system.file("extdata", "chrY_rfPred.txtz.tbi", package="rfPred",mustWork=TRUE))
 #' 
 
 setGeneric(
  name = "rfPred_scores",
- def = function(variant_list,data="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz",
-                index="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz.tbi",
-                all.col=FALSE,file.export=NULL,n.cores=1){standardGeneric("rfPred_scores")}
+ def = function(variant_list,
+                data=system.file("extdata/chrY_rfPred.txtz", package="rfPred"),
+                index=system.file("extdata/chrY_rfPred.txtz.tbi", package="rfPred"),
+                all.col=FALSE,
+                file.export=NULL,
+                n.cores=1){
+   standardGeneric("rfPred_scores")
+ }
 )
 
 #' @rdname rfPred_scores-methods
 #' @aliases rfPred_scores,data.frame-method
-#' @usage rfPred_scores(variant_list,data="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz",
-#'                 index="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz.tbi",
-#'                 all.col=FALSE,file.export=NULL)
+#' @usage rfPred_scores(variant_list,
+#'                      data=system.file("extdata/chrY_rfPred.txtz", package="rfPred"),
+#'                      index=system.file("extdata/chrY_rfPred.txtz.tbi", package="rfPred"),
+#'                      all.col=FALSE, file.export=NULL, n.cores=1)
 setMethod(
   f = "rfPred_scores",
   signature = c("data.frame"),
-  definition = function(variant_list,data,index,all.col,file.export,n.cores){
-    rfPred_scores_motor(variant_list,data,index,all.col,file.export,n.cores)
+  definition = function(variant_list, data, index, all.col, file.export, n.cores){
+    rfPred_scores_motor(variant_list, data, index, all.col, file.export, n.cores)
   }
 )
 
@@ -96,12 +102,12 @@ setMethod(
 setMethod(
   f = "rfPred_scores",
   signature = c("character"),
-  definition = function(variant_list,data,index,all.col,file.export,n.cores){
-    d=read.table(variant_list,stringsAsFactors=FALSE)
-    d=d[,c(1,2,4,5)]
-    d[,1]=sub("chr","",d[,1])
-    d[,2]=sub(" ","",d[,2])
-    rfPred_scores_motor(d,data,index,all.col,file.export,n.cores)
+  definition = function(variant_list, data, index, all.col, file.export, n.cores){
+    d <- read.table(variant_list, stringsAsFactors=FALSE)
+    d <- d[, c(1,2,4,5)]
+    d[,1] <- sub("chr", "", d[,1])
+    d[,2] <- sub(" ", "", d[,2])
+    rfPred_scores_motor(d, data, index, all.col, file.export, n.cores)
   }
 )
 
@@ -110,11 +116,11 @@ setMethod(
 setMethod(
   f = "rfPred_scores",
   signature = c("GRanges"),
-  definition = function(variant_list,data,index,all.col,file.export,n.cores){
-    seqlevels(variant_list)=sub("chr","",seqlevels(variant_list))
-    d=as.data.frame(variant_list,stringsAsFactors=FALSE)
-    d=d[,c("seqnames","start","reference","alteration",if(any(names(d)=="proteine")){"proteine"}else{NULL})]
-    rfPred_scores_motor(d,data,index,all.col,file.export,n.cores)
+  definition = function(variant_list, data, index, all.col, file.export, n.cores){
+    seqlevels(variant_list) <- sub("chr", "", seqlevels(variant_list))
+    d <- as.data.frame(variant_list, stringsAsFactors=FALSE)
+    d <- d[, c("seqnames", "start", "reference", "alteration", if(any(names(d)=="proteine")){"proteine"}else{NULL})]
+    rfPred_scores_motor(d, data, index, all.col, file.export, n.cores)
   }
 )
 
