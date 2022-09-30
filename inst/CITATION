@@ -4,12 +4,12 @@ citEntry(entry="Manual",
     title = "Assign rfPred functional prediction scores to a missense variants list",
     author = personList(as.person("F. Jabot-Hanin"), as.person("H. Varet"), as.person("J.-P. Jais")),
     year = 2013,
-    note = paste("R package version", packageDescription("rfPred")$version),
+    note = paste("R package version", meta$Version),
     textVersion =
       paste("Jabot-Hanin F., Varet H. and Jais J.-P. (",
-        substring(packageDescription("rfPred")$Date,1,4),
+        substring(meta$Date, 1, 4),
         ") rfPred ",
-        "R package, version ", packageDescription("rfPred")$Version,
+        "R package, version ", meta$Version,
         ".", sep = "")
 )
 

@@ -35,31 +35,31 @@ print(variant_list_Y)
 \Robject{variant\_list\_Y} is a \Rclass{data.frame} which contains four or five columns respecting this order: the chromosome, the HG19 position on the chromosome, the reference nucleotid allele, the alteration nucleotid allele and optionally the protein (Uniprot accession number). Here, this \Rclass{data.frame} is part of the package, but it is possible to import data from an Excel or CSV file in \R{} (see \R{} documentation). The user can then run the function:
 <<>>=
 result=rfPred_scores(variant_list=variant_list_Y,
-                     data="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz", 
-                     index="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz.tbi")
+                     data=system.file("extdata/chrY_rfPred.txtz", package="rfPred"), 
+                     index=system.file("extdata/chrY_rfPred.txtz.tbi", package="rfPred"))
 print(result)
 @ 
-The argument \Robject{data} is the path to the data base (TabixFile) and the argument \Robject{index} is the path to the TabixFile index. Note that the default paths are those to send queries on the server (see section \ref{database} for details) and thus need an Internet connection. \\
+The argument \Robject{data} is the path to the data base (TabixFile) and the argument \Robject{index} is the path to the TabixFile index. Note that the default paths correspond to the example chromosome Y but the user can download the entire data base at \url{https://doi.org/10.5281/zenodo.7127736} (see section \ref{database} for details). \\
 
 It is also possible to look for variants without specifying the protein. In this case, the user gives only the columns 1-4 as input: 
 <<>>=
 result2=rfPred_scores(variant_list=variant_list_Y[,1:4],
-                      data="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz", 
-                      index="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz.tbi")
+                      data=system.file("extdata/chrY_rfPred.txtz", package="rfPred"),
+                      index=system.file("extdata/chrY_rfPred.txtz.tbi", package="rfPred"))
 print(result2)
 @ 
 The object \Robject{result2} contains more lines (13) than the object \Robject{result} (5) because the user does not impose any matching on the protein.\\
 
 \section{TabixFile and TabixFile index}
 \label{database}
-The user can search in the TabixFile/index located on the server (\url{http://www.sbim.fr/rfPred/}) or can download them (about 3.3 Go) in order to use them locally on his/her computer. In this case, the arguments \Robject{data} and \Robject{index} must be the paths to the TabixFile and index on the user's computer. Note that the function runs faster using the data base locally than on the server since it is not necessary to go through the Internet. Moreover, we limited requests on the server to variants lists with less than 1000 rows.
+To use the entire TabixFile/index containing all the chromosomes, the user must download the two files (about 3.3 Go) in order to use them locally on his/her computer. They are available on Zenodo at \url{https://doi.org/10.5281/zenodo.7127736}. In this case, the arguments \Robject{data} and \Robject{index} must be the paths to the TabixFile and index on the user's computer.
 
 \section{Exporting the results}
 In order to share the results with non-\R{} users, the \Rfunction{rfPred\_scores()} function allows one to export the results in a CSV file thanks to the \Robject{file.export} argument:
 <<>>=
 result3=rfPred_scores(variant_list=variant_list_Y,
-                      data="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz", 
-                      index="http://www.sbim.fr/rfPred/all_chr_rfPred.txtz.tbi",
+                      data=system.file("extdata/chrY_rfPred.txtz", package="rfPred"), 
+                      index=system.file("extdata/chrY_rfPred.txtz.tbi", package="rfPred"),
                       file.export="results.csv")
 @ 
 The CSV file "results.csv" will be created in the current working directory of the \R{} session.
