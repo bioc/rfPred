@@ -53,7 +53,7 @@ rfPred_scores_motor=function(variant_list, data, index, all.col, file.export, n.
     stopCluster(Clust)
   }
   
-  res.rst <- .Call("outstring",unlist(res.rst),as.integer(length(names)),"\t",PACKAGE="rfPred")
+  res.rst <- .Call("outstring", unlist(res.rst), as.integer(length(names)), "\t", PACKAGE="rfPred")
   colnames(res.rst) <- names
   res.rst <- as.data.frame(res.rst, stringsAsFactors=FALSE)[, names.out]
   res.rst[, 2] <- as.numeric(res.rst[, 2]) 
