@@ -2,7 +2,7 @@
 #' @useDynLib rfPred
 #' @import methods
 #' @importFrom utils read.table write.csv2
-#' @importFrom GenomeInfoDb seqlevels seqlevels<-
+#' @importFrom Seqinfo seqlevels seqlevels<-
 #' @importFrom data.table as.data.table
 #' @importFrom IRanges reduce IRanges
 #' @importFrom GenomicRanges GRanges

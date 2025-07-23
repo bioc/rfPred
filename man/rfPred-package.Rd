@@ -2,6 +2,7 @@
 % Please edit documentation in R/rfPred-package.r
 \docType{package}
 \name{rfPred-package}
+\alias{rfPred}
 \alias{rfPred-package}
 \title{Assign functional prediction rfPred scores to human missense variants 
 (random forest method based on SIFT, Polyphen2, PhyloP, LRT and Mutation Taster)}
