@@ -2,7 +2,7 @@ Package: rfPred
 Type: Package
 Title: Assign rfPred functional prediction scores to a missense
         variants list
-Version: 1.49.0
+Version: 1.50.0
 Date: 2025-07-23
 Author: Fabienne Jabot-Hanin, Hugo Varet and Jean-Philippe Jais
 Depends: R (>= 3.5.0), methods
